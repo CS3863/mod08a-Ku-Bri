@@ -9,21 +9,20 @@ public class UseData : MonoBehaviour
   * */
 
     List<Dictionary<string, object>> data; 
-    public GameObject myCube;//prefab
-    int cubeCount; //variable 
+    //public GameObject myCube;//prefab
+    //int cubeCount; //variable 
+    //private float startDelay = 2.0f;
+    //private float timeInterval = 1.0f;
 
     void Awake()
     {
 
-        data = CSVReader.Read("udata");//udata is the name of the csv file 
+        data = CSVReader.Read("xc02DataOnly");//udata is the name of the csv file 
 
         for (var i = 0; i < data.Count; i++)
         {
             //name, age, speed, description, is the headers of the database
-            print("name " + data[i]["name"] + " " +
-                   "age " + data[i]["age"] + " " +
-                   "speed " + data[i]["speed"] + " " +
-                   "desc " + data[i]["description"]);
+            print("xco2 " + data[i]["xco2"] + " " );
         }
 
 
@@ -32,25 +31,41 @@ public class UseData : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        for (var i = 0; i < data.Count; i++)
-        {
-            object age = data[i]["age"];//get age data
-            cubeCount += (int)age;//convert age data to int and add to cubeCount
-            Debug.Log("cubeCount" +cubeCount);
-        }
+       
+
+        //InvokeRepeating("SpawnObject", startDelay, timeInterval);
+
     }//end Start()
 
     // Update is called once per frame
     void Update()
     {
+        for (var i = 0; i < data.Count; i++)
+        {
+            object xco2 = data[i]["xco2"];//get age data
+            gameObject.transform.localScale = new Vector3((float)xco2, (float)xco2, (float)xco2);
+            //cubeCount += (int)xco2;//convert age data to int and add to cubeCount
+            //Debug.Log("cubeCount " +cubeCount);
+        }
         //As long as cube count is not zero, instantiate prefab
-        while (cubeCount > 0)
+        /*while (cubeCount > 0)
         {
             Instantiate(myCube);
             cubeCount--;
             Debug.Log("cubeCount" + cubeCount);
-        }
-        
+        }*/
+
 
     }//end Update()
+
+    /*void SpawnObject()
+    {
+        if(cubeCount > 0)
+        {
+            Instantiate(myCube);
+            cubeCount--;
+            Debug.Log("cubeCount " + cubeCount);
+        }
+    }*/
 }
+
