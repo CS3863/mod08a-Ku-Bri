@@ -9,10 +9,15 @@ public class UseData : MonoBehaviour
   * */
 
     List<Dictionary<string, object>> data; 
+
     //public GameObject myCube;//prefab
-    //int cubeCount; //variable 
-    //private float startDelay = 2.0f;
-    //private float timeInterval = 1.0f;
+    int rowCount; //variable 
+
+    private float startDelay = 2.0f;
+    private float timeInterval = 1.0f;
+
+    public object tempObj;
+    public float tempFloat;
 
     void Awake()
     {
@@ -21,24 +26,21 @@ public class UseData : MonoBehaviour
 
         for (var i = 0; i < data.Count; i++)
         {
-            //name, age, speed, description, is the headers of the database
             print("xco2 " + data[i]["xco2"] + " " );
         }
-
+        rowCount = 0;
 
     }//end Awake()
 
     // Use this for initialization
     void Start()
     {
-       
-
-        //InvokeRepeating("SpawnObject", startDelay, timeInterval);
+        InvokeRepeating("SpawnObject", startDelay, timeInterval);
 
     }//end Start()
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         for (var i = 0; i < data.Count; i++)
         {
@@ -47,25 +49,20 @@ public class UseData : MonoBehaviour
             //cubeCount += (int)xco2;//convert age data to int and add to cubeCount
             //Debug.Log("cubeCount " +cubeCount);
         }
-        //As long as cube count is not zero, instantiate prefab
-        /*while (cubeCount > 0)
-        {
-            Instantiate(myCube);
-            cubeCount--;
-            Debug.Log("cubeCount" + cubeCount);
-        }*/
+       
 
+    }*/  //end Update() 
 
-    }//end Update()
-
-    /*void SpawnObject()
+    void SpawnObject()
     {
-        if(cubeCount > 0)
-        {
-            Instantiate(myCube);
-            cubeCount--;
-            Debug.Log("cubeCount " + cubeCount);
-        }
-    }*/
+        tempObj = (data[rowCount]["xco2"]);
+        tempFloat = System.Convert.ToSingle(tempObj);
+        tempFloat = (tempFloat - 350) * 10;
+        rowCount++;
+
+        transform.localScale = new Vector3(tempFloat, tempFloat, tempFloat);
+        Debug.Log("The tempFloat = " + tempFloat);
+        Debug.Log("Count = " + rowCount);
+    }
 }
 
