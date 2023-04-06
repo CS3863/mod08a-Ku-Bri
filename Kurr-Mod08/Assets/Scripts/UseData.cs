@@ -19,6 +19,9 @@ public class UseData : MonoBehaviour
     public object tempObj;
     public float tempFloat;
 
+    
+
+
     void Awake()
     {
 
@@ -57,12 +60,15 @@ public class UseData : MonoBehaviour
     {
         tempObj = (data[rowCount]["xco2"]);
         tempFloat = System.Convert.ToSingle(tempObj);
-        tempFloat = (tempFloat - 350) * 10;
+        Debug.Log(tempFloat = Remap(tempFloat, from1, to1, from2, to2));
+        
         rowCount++;
 
         transform.localScale = new Vector3(tempFloat, tempFloat, tempFloat);
         Debug.Log("The tempFloat = " + tempFloat);
         Debug.Log("Count = " + rowCount);
     }
+
+    
 }
 
