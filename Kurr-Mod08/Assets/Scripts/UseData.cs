@@ -60,7 +60,11 @@ public class UseData : MonoBehaviour
     {
         tempObj = (data[rowCount]["xco2"]);
         tempFloat = System.Convert.ToSingle(tempObj);
+<<<<<<< HEAD
        
+=======
+        //Debug.Log(tempFloat = Remap(tempFloat, from1, to1, from2, to2));
+>>>>>>> b829a1ef067568337bf49d96969ba613fd19302d
         
         rowCount++;
 
